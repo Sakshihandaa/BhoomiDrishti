@@ -1,77 +1,82 @@
 // src/components/IndustryRegistration.jsx
-import React from "react";
+import React, { useState } from "react";
 
-export default function IndustryRegistration() {
-  const steps = [
-    {
-      num: "1",
-      title: "Corporate Verification",
-      desc: "Validate organization via Corporate Identification Number (CIN), Corporate PAN, and registered address.",
-      tag: "Required: CIN Certificate",
-    },
-    {
-      num: "2",
-      title: "Nodal Representative",
-      desc: "Designate official signatory with domain-matched email and multi-factor mobile OTP authentication.",
-      tag: "Required: Board Authorization",
-    },
-    {
-      num: "3",
-      title: "Project Mapping",
-      desc: "Define industry classification, pollution index (Red/Orange/Green), water intake, and power requirements.",
-      tag: "Output: Statutory Dossier",
-    },
-  ];
+export default function IndustryRegistration({ isOpen, onClose }) {
+  const [formData, setFormData] = useState({
+    companyName: "",
+    cinNumber: "",
+    officialEmail: "",
+    industryCategory: "Red",
+  });
+
+  if (!isOpen) return null;
 
   return (
-    <section className="py-12 px-6 max-w-7xl mx-auto space-y-8">
-      {/* 🌿 MAIN SECTION WITH LIGHT GREEN BG */}
-      <div className="bg-[#f2f7f2] border border-emerald-100/80 rounded-3xl p-8 sm:p-12 space-y-10">
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-            Industry Entity Onboarding Requirements
-          </h2>
-          <p className="text-slate-600 text-xs sm:text-sm mt-2">
-            Prerequisites for project proponents and accredited consultants to
-            submit pre-clearance assessments.
-          </p>
-        </div>
-
-        {/* 3 Step Cards */}
-        <div className="grid md:grid-cols-3 gap-6">
-          {steps.map((item, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-2xl p-6 border border-stone-200/80 shadow-2xs space-y-4"
-            >
-              <span className="w-8 h-8 rounded-full bg-[#2D5A27] text-white text-xs font-bold flex items-center justify-center">
-                {item.num}
-              </span>
-              <h3 className="text-sm font-bold text-slate-900">{item.title}</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                {item.desc}
-              </p>
-              <span className="inline-block bg-amber-50 text-amber-800 border border-amber-200/80 text-[10px] font-semibold px-2.5 py-1 rounded-md">
-                {item.tag}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        {/* CTA Card inside the light green container */}
-        <div className="bg-white rounded-2xl p-8 text-center max-w-xl mx-auto border border-emerald-100 shadow-sm space-y-3">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4">
+      <div className="bg-white rounded-2xl p-6 max-w-lg w-full border border-stone-200 shadow-xl space-y-4">
+        <div className="flex justify-between items-center border-b pb-3">
           <h3 className="text-lg font-bold text-slate-900">
-            Ready to Register Your Industrial Entity?
+            Industrial Entity Registration
           </h3>
-          <p className="text-xs text-slate-600">
-            Start running site evaluations and export certified audit dossiers.
-          </p>
-          <button className="bg-[#2D5A27] hover:bg-[#23481f] text-white font-bold text-xs px-6 py-2.5 rounded-lg transition-all cursor-pointer">
-            Begin Registration
+          <button
+            onClick={onClose}
+            className="text-slate-400 hover:text-slate-600 text-xl font-bold"
+          >
+            &times;
           </button>
         </div>
+
+        <form className="space-y-4">
+          <div>
+            <label className="block text-xs font-semibold text-slate-700 mb-1">
+              Company / Entity Name
+            </label>
+            <input
+              type="text"
+              placeholder="e.g. GreenTech Industries Ltd."
+              className="w-full border border-stone-300 rounded-lg p-2.5 text-xs focus:ring-2 focus:ring-[#2D5A27] outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-semibold text-slate-700 mb-1">
+              Corporate Identification Number (CIN)
+            </label>
+            <input
+              type="text"
+              placeholder="e.g. U12345MH2026PTC123456"
+              className="w-full border border-stone-300 rounded-lg p-2.5 text-xs focus:ring-2 focus:ring-[#2D5A27] outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-semibold text-slate-700 mb-1">
+              Nodal Officer Email
+            </label>
+            <input
+              type="email"
+              placeholder="nodal@company.com"
+              className="w-full border border-stone-300 rounded-lg p-2.5 text-xs focus:ring-2 focus:ring-[#2D5A27] outline-none"
+            />
+          </div>
+
+          <div className="flex justify-end gap-3 pt-2">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2 border border-stone-300 text-slate-700 text-xs font-semibold rounded-lg"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="px-4 py-2 bg-[#2D5A27] text-white text-xs font-semibold rounded-lg hover:bg-[#23481f]"
+            >
+              Submit Registration
+            </button>
+          </div>
+        </form>
       </div>
-    </section>
+    </div>
   );
 }
