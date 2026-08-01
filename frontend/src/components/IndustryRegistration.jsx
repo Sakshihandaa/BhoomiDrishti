@@ -1,68 +1,75 @@
+// src/components/IndustryRegistration.jsx
 import React from "react";
 
-export function IndustryRegistrationSection() {
+export default function IndustryRegistration() {
+  const steps = [
+    {
+      num: "1",
+      title: "Corporate Verification",
+      desc: "Validate organization via Corporate Identification Number (CIN), Corporate PAN, and registered address.",
+      tag: "Required: CIN Certificate",
+    },
+    {
+      num: "2",
+      title: "Nodal Representative",
+      desc: "Designate official signatory with domain-matched email and multi-factor mobile OTP authentication.",
+      tag: "Required: Board Authorization",
+    },
+    {
+      num: "3",
+      title: "Project Mapping",
+      desc: "Define industry classification, pollution index (Red/Orange/Green), water intake, and power requirements.",
+      tag: "Output: Statutory Dossier",
+    },
+  ];
+
   return (
-    <section className="py-20 bg-slate-950 border-t border-slate-800 text-slate-200">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Industrial Entity Registration
+    <section className="py-12 px-6 max-w-7xl mx-auto space-y-8">
+      {/* 🌿 MAIN SECTION WITH LIGHT GREEN BG */}
+      <div className="bg-[#f2f7f2] border border-emerald-100/80 rounded-3xl p-8 sm:p-12 space-y-10">
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
+            Industry Entity Onboarding Requirements
           </h2>
-          <p className="text-slate-400 text-sm leading-relaxed">
-            Register your enterprise on BhoomiDrishti to run automated EIA
-            screening, access GIS eco-sensitive maps, and submit pre-clearance
-            feasibility reports.
+          <p className="text-slate-600 text-xs sm:text-sm mt-2">
+            Prerequisites for project proponents and accredited consultants to
+            submit pre-clearance assessments.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 hover:border-slate-700 transition-all">
-            <div className="w-8 h-8 rounded-full bg-emerald-950 text-emerald-400 font-bold flex items-center justify-center text-sm mb-4 border border-emerald-800">
-              1
+        {/* 3 Step Cards */}
+        <div className="grid md:grid-cols-3 gap-6">
+          {steps.map((item, idx) => (
+            <div
+              key={idx}
+              className="bg-white rounded-2xl p-6 border border-stone-200/80 shadow-2xs space-y-4"
+            >
+              <span className="w-8 h-8 rounded-full bg-[#2D5A27] text-white text-xs font-bold flex items-center justify-center">
+                {item.num}
+              </span>
+              <h3 className="text-sm font-bold text-slate-900">{item.title}</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                {item.desc}
+              </p>
+              <span className="inline-block bg-amber-50 text-amber-800 border border-amber-200/80 text-[10px] font-semibold px-2.5 py-1 rounded-md">
+                {item.tag}
+              </span>
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">
-              Corporate Identity
-            </h3>
-            <p className="text-xs text-slate-400 leading-relaxed mb-4">
-              Requires registered business details including Company CIN,
-              Corporate PAN/TAN, and official headquarters address.
-            </p>
-            <span className="text-xs text-emerald-400 font-medium">
-              Required Document: CIN Certificate
-            </span>
-          </div>
+          ))}
+        </div>
 
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 hover:border-slate-700 transition-all">
-            <div className="w-8 h-8 rounded-full bg-emerald-950 text-emerald-400 font-bold flex items-center justify-center text-sm mb-4 border border-emerald-800">
-              2
-            </div>
-            <h3 className="text-lg font-semibold text-white mb-2">
-              Authorized Signatory
-            </h3>
-            <p className="text-xs text-slate-400 leading-relaxed mb-4">
-              Nodal officer verification via official corporate email domain and
-              phone OTP authentication for audit trails.
-            </p>
-            <span className="text-xs text-emerald-400 font-medium">
-              Required: Authorization Letter
-            </span>
-          </div>
-
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 hover:border-slate-700 transition-all">
-            <div className="w-8 h-8 rounded-full bg-emerald-950 text-emerald-400 font-bold flex items-center justify-center text-sm mb-4 border border-emerald-800">
-              3
-            </div>
-            <h3 className="text-lg font-semibold text-white mb-2">
-              Project Specification
-            </h3>
-            <p className="text-xs text-slate-400 leading-relaxed mb-4">
-              Input project category (Red/Orange/Green), estimated power load
-              (MW), and daily water consumption.
-            </p>
-            <span className="text-xs text-emerald-400 font-medium">
-              Ready for: Instant Feasibility Audit
-            </span>
-          </div>
+        {/* CTA Card inside the light green container */}
+        <div className="bg-white rounded-2xl p-8 text-center max-w-xl mx-auto border border-emerald-100 shadow-sm space-y-3">
+          <h3 className="text-lg font-bold text-slate-900">
+            Ready to Register Your Industrial Entity?
+          </h3>
+          <p className="text-xs text-slate-600">
+            Start running site evaluations and export certified audit dossiers.
+          </p>
+          <button className="bg-[#2D5A27] hover:bg-[#23481f] text-white font-bold text-xs px-6 py-2.5 rounded-lg transition-all cursor-pointer">
+            Begin Registration
+          </button>
         </div>
       </div>
     </section>
